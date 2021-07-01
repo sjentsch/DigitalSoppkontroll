@@ -1,6 +1,6 @@
 # DigitalSoppkontroll
 
-Digital soppkontroll hvor soppkontrollørene fra Norges sopp- og nyttevekstforbund som sjekker soppen din. Last opp bilder av soppen du har plukket, og en av våre kontrollører vil gi tilbakemelding på om soppen er spiselig eller ikke. I tillegg finner du også en oversikt over soppkontroller i nærheten, og annen nyttig informasjon om sopp.
+Digital soppkontroll hvor soppkontrollørene fra Norges sopp- og nyttevekstforbund som sjekker soppen din. Det er en clickable-app for Ubuntu Touch. Ved appen kan du laste opp bilder av soppen du har plukket, og en kontrollør fra Norges sopp- og nyttevekstforbund (NSNF) vil gi tilbakemelding på om soppen er spiselig eller ikke. I tillegg finner du også en oversikt over soppkontroller i nærheten, og annen nyttig informasjon om sopp.
 
 ## License
 
