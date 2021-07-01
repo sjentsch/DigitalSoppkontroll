@@ -1,8 +1,15 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(DigitalSoppkontroll C CXX)
 
-# Automatically create moc files
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+find_package(Qt5Core)
+find_package(Qt5Qml)
+find_package(Qt5Quick)
+#find_package(Qt5WebEngine)
+
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 execute_process(
     COMMAND dpkg-architecture -qDEB_HOST_MULTIARCH
@@ -13,6 +20,7 @@ set(QT_IMPORTS_DIR "lib/${ARCH_TRIPLET}")
 
 set(PROJECT_NAME "DigitalSoppkontroll")
 set(FULL_PROJECT_NAME "digitalsoppkontroll.sjentsch")
+set(CMAKE_INSTALL_PREFIX /)
 set(DATA_DIR /)
 set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
 
@@ -21,7 +29,7 @@ set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
 if(DEFINED ENV{SDK_FRAMEWORK})
     set(CLICK_FRAMEWORK "$ENV{SDK_FRAMEWORK}")
 else()
-    set(CLICK_FRAMEWORK "ubuntu-sdk-16.04.3")
+    set(CLICK_FRAMEWORK "ubuntu-sdk-16.04.5")
 endif()
 
 # This figures out the target architecture for use in the manifest file.
@@ -54,14 +62,11 @@ endif(NOT BUILD_VERSION_RAW)
 string(SUBSTRING ${BUILD_VERSION_RAW} 1 -1 BUILD_VERSION)
 message(STATUS "Build version is: ${BUILD_VERSION}")
 
-
 configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
 install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
-
-install(DIRECTORY assets DESTINATION ${DATA_DIR})
-
 install(DIRECTORY qml DESTINATION ${DATA_DIR})
+install(DIRECTORY assets DESTINATION ${DATA_DIR})
 
 # Translations
 file(GLOB_RECURSE I18N_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/po qml/*.qml qml/*.js)
@@ -84,14 +89,25 @@ add_custom_target(${DESKTOP_FILE_NAME} ALL
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE_NAME} DESTINATION ${DATA_DIR})
 
+set(
+    SRCS
+    main.cpp
+    qml.qrc
+)
+
+add_executable(${PROJECT_NAME} ${SRCS} ${RSCS} ${qqc2-gallery_SRC})
+qt5_use_modules(${PROJECT_NAME} Gui Qml Quick QuickControls2) # WebEngine)
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${DATA_DIR})
+
 add_subdirectory(po)
 
 # Make source files visible in qtcreator
+# We don't need to add plugin sources here as they get exposed
+# via the library target.
 file(GLOB_RECURSE PROJECT_SRC_FILES
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     qml/*.qml
     qml/*.js
-    src/*
     *.json
     *.json.in
     *.apparmor

@@ -1,4 +1,11 @@
 {
-    "policy_groups": [],
+    "policy_groups": [
+        "networking",
+        "webview",
+        "camera",
+        "location",
+        "sensors",
+        "connectivity"
+    ],
     "policy_version": 16.04
 }
