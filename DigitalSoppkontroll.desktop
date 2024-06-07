@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Digital Soppkontroll
+Comment="Digital soppkontroll fra Norges sopp- og nyttevekstforbund"
+Exec=DigitalSoppkontroll
+Icon=DigitalSoppkontroll.svg
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+X-Ubuntu-Splash-Color=#000000
+X-Ubuntu-Splash-Image=DigitalSoppkontroll.svg

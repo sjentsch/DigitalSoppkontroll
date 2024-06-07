@@ -1,8 +1,0 @@
-[Desktop Entry]
-_Name=DigitalSoppkontroll
-Exec=DigitalSoppkontroll
-Icon=assets/DigitalSoppkontroll.svg
-Terminal=false
-Type=Application
-X-Ubuntu-Touch=true
-X-Ubuntu-Splash-Color=#ffffff

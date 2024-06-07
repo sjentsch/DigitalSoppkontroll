@@ -2,10 +2,10 @@
     "policy_groups": [
         "networking",
         "webview",
+        "connectivity",
         "camera",
         "location",
-        "sensors",
-        "connectivity"
+        "content_exchange"
     ],
     "policy_version": 16.04
 }
